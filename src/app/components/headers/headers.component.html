@@ -5,23 +5,40 @@
 >
   <!-- Navbar brand -->
   <mdb-navbar-brand
-    ><a class="navbar-brand" href="#">BIBLIOTECA</a></mdb-navbar-brand
+    ><a class="navbar-brand" href="">BIBLIOTECA</a></mdb-navbar-brand
   >
 
   <!-- Collapsible content -->
   <links>
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect
+      <li class="nav-item">
+        <a
+          routerLink="/admin/user"
+          routerLinkActive="active"
+          *ngIf="isAdmin === 'admin' && isLogged"
+          class="nav-link waves-light"
+          mdbWavesEffect
           >Usuario<span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Libros</a>
+        <a
+          routerLink="/admin/book"
+          *ngIf="isAdmin === 'admin' && isLogged"
+          class="nav-link waves-light"
+          mdbWavesEffect
+          >Libros</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Revistas</a>
+        <a
+          routerLink="/admin/magazine"
+          *ngIf="isAdmin === 'admin' && isLogged"
+          class="nav-link waves-light"
+          mdbWavesEffect
+          >Revistas</a
+        >
       </li>
     </ul>
     <!-- Links -->
@@ -34,16 +51,31 @@
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
-        <a class="nav-link">
+        <a
+          *ngIf="!isLogged"
+          class="nav-link"
+          routerLink="/user/login"
+          routerLinkActive="active"
+        >
+          <mdb-icon fab icon=""></mdb-icon>Iniciar<span class="caret"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="!isLogged" class="nav-link">
+          <mdb-icon fab icon=""></mdb-icon>Aceraca de<span class="caret"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="isAdmin != 'admin' && isLogged" class="nav-link">
           <mdb-icon fab icon=""></mdb-icon>Libros<span class="caret"></span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">
+        <a *ngIf="isAdmin != 'admin' && isLogged" class="nav-link">
           <mdb-icon fab icon=""></mdb-icon>Revistas<span class="caret"></span>
         </a>
       </li>
-      <li class="nav-item dropdown" dropdown>
+      <li *ngIf="isLogged" class="nav-item dropdown" dropdown>
         <a
           dropdownToggle
           mdbWavesEffect
@@ -51,20 +83,28 @@
           class="nav-link dropdown-toggle waves-light"
           mdbWavesEffect
         >
-          <mdb-icon fas icon="user"></mdb-icon> Profile<span
-            class="caret"
-          ></span
+          <mdb-icon fas icon="user"></mdb-icon> Profile
+          <span class="caret"></span
         ></a>
         <div
           *dropdownMenu
           class="dropdown-menu dropdown-menu-right dropdown dropdown-primary"
           role="menu"
         >
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-            >My account</a
+          <a
+            *ngIf="isLogged"
+            class="dropdown-item waves-light"
+            mdbWavesEffect
+            href="/user/login"
+            >Mi cuenta</a
           >
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-            >Log out</a
+          <a
+            *ngIf="isLogged"
+            class="dropdown-item waves-light"
+            (click)="onLogout()"
+            mdbWavesEffect
+            href="#"
+            >Cerrar Sesion</a
           >
         </div>
       </li>

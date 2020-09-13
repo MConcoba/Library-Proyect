@@ -24,22 +24,22 @@ export class AuthService {
   });
 
   registerUser(userDataRegister: User): Observable<any> {
-    const url_api = 'http://localhost:3000/api/Users';
+    const urlApi = 'http://localhost:3000/api/Users';
     return this.http
-      .post<UserInterface>(url_api, userDataRegister, { headers: this.headers })
+      .post<UserInterface>(urlApi, userDataRegister, { headers: this.headers })
       .pipe(map((data) => data));
   }
 
   loginuser(authData: User): Observable<any> {
-    const url_api = 'http://localhost:3000/api/login';
+    const urlApi = 'http://localhost:3000/api/login';
     return this.http
-      .post<UserInterface>(url_api, authData)
+      .post<UserInterface>(urlApi, authData)
       .pipe(map((data) => data));
   }
 
   setUser(user: UserInterface): void {
-    let user_string = JSON.stringify(user);
-    localStorage.setItem('currentUser', user_string);
+    const userstring = JSON.stringify(user);
+    localStorage.setItem('currentUser', userstring);
   }
 
   setToken(token): void {
@@ -51,9 +51,9 @@ export class AuthService {
   }
 
   getCurrentUser(): UserInterface {
-    let user_string = localStorage.getItem('currentUser');
-    if (user_string != null) {
-      let user: UserInterface = JSON.parse(user_string);
+    const userstring = localStorage.getItem('currentUser');
+    if (userstring != null) {
+      const user: UserInterface = JSON.parse(userstring);
       return user;
     } else {
       return null;
@@ -61,11 +61,11 @@ export class AuthService {
   }
 
   logoutUser() {
-    let accessToken = localStorage.getItem('accessToken');
-    const url_api = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
+    const accessToken = localStorage.getItem('accessToken');
+    const urlApi = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
     localStorage.removeItem('accessToken');
     localStorage.removeItem('currentUser');
-    return this.http.post<UserInterface>(url_api, { headers: this.headers });
+    return this.http.post<UserInterface>(urlApi, { headers: this.headers });
   }
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();

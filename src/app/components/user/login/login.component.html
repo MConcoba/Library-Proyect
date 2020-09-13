@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="login-form">
+  <mat-card>
+    <mat-card-content>
+      <h1>LOGIN</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <mat-form-field class="full-width-input separation">
+          <input
+            formControlName="userName"
+            matInput
+            placeholder="Username"
+            required
+            type="text"
+          />
+          <mat-error *ngIf="isValidField('userName')">
+            {{ getErrorMessage('userName') }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input separation">
+          <input
+            formControlName="password"
+            matInput
+            placeholder="Password"
+            required
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="isValidField('password')">
+            {{ getErrorMessage('password') }}
+          </mat-error>
+        </mat-form-field>
+        <button
+          [disabled]="loginForm.invalid"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
+          Login
+        </button>
+
+        <button
+          [disabled]="!isContectField()"
+          type="reset"
+          mat-raised-button
+          color="warn"
+          routerLink="
+          "
+        >
+          Cancelar
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
