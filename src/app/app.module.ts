@@ -13,6 +13,7 @@ import { UserAdminComponent } from './components/admin/user-admin/user-admin.com
 import { HeadersComponent } from './components/headers/headers.component';
 import { HomeComponent } from './components/home/home.component';
 import { BookModalComponent } from './components/modals/book-modal/book-modal.component';
+import { MagazineModalComponent } from './components/modals/magazine-modal/magazine-modal.component';
 import { BookUserComponent } from './components/user/book-user/book-user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { MagazineUserComponent } from './components/user/magazine-user/magazine-user.component';
@@ -22,6 +23,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { AuthService } from './services/auth-service.service';
 import { BookService } from './services/book-service.service';
+import { MagazineService } from './services/magazine-service.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { BookService } from './services/book-service.service';
     TruncateTextPipe,
     FilterPipe,
     BookModalComponent,
+    MagazineModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { BookService } from './services/book-service.service';
     MDBBootstrapModule.forRoot(),
   ],
   exports: [],
-  providers: [AuthService, BookService],
+  providers: [AuthService, BookService, MagazineService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
