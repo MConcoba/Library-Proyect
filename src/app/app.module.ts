@@ -12,11 +12,13 @@ import { MagazineAdminComponent } from './components/admin/magazine-admin/magazi
 import { UserAdminComponent } from './components/admin/user-admin/user-admin.component';
 import { HeadersComponent } from './components/headers/headers.component';
 import { HomeComponent } from './components/home/home.component';
+import { BookModalComponent } from './components/modals/book-modal/book-modal.component';
 import { BookUserComponent } from './components/user/book-user/book-user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { MagazineUserComponent } from './components/user/magazine-user/magazine-user.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { MaterialModule } from './material.module';
+import { FilterPipe } from './pipes/filter.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { AuthService } from './services/auth-service.service';
 import { BookService } from './services/book-service.service';
@@ -34,6 +36,8 @@ import { BookService } from './services/book-service.service';
     MagazineUserComponent,
     HeadersComponent,
     TruncateTextPipe,
+    FilterPipe,
+    BookModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -51,7 +51,8 @@ export class AuthService {
   }
 
   getCurrentUser(): UserInterface {
-    const userstring = localStorage.getItem('currentUser');
+    const userstring = localStorage.getItem('user');
+    console.log(userstring);
     if (userstring != null) {
       const user: UserInterface = JSON.parse(userstring);
       return user;
@@ -60,13 +61,6 @@ export class AuthService {
     }
   }
 
-  logoutUser() {
-    const accessToken = localStorage.getItem('accessToken');
-    const urlApi = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('currentUser');
-    return this.http.post<UserInterface>(urlApi, { headers: this.headers });
-  }
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
