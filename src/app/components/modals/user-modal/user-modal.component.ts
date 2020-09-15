@@ -35,16 +35,14 @@ export class UserModalComponent implements OnInit, OnDestroy {
 
   onSaveUser(formUser: NgForm) {
     if (formUser.value._id === '' || formUser.value._id == null) {
-      console.log(formUser.value._id);
       // NEW
       this.authSvc.createUser(formUser.value).subscribe((data) => {
         location.reload();
       });
     } else {
-      console.log(formUser.value._id);
       // update
       this.authSvc.updateUser(formUser.value).subscribe((data) => {
-        location.reload(), console.log(data);
+        location.reload();
       });
     }
   }

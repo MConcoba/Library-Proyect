@@ -36,16 +36,14 @@ export class MagazineModalComponent implements OnInit, OnDestroy {
 
   onSaveMagazine(magazineForm: NgForm) {
     if (magazineForm.value._id === '' || magazineForm.value._id == null) {
-      console.log(magazineForm.value._id);
       // NEW
       this.magazineSvc.saveMagazine(magazineForm.value).subscribe((data) => {
         location.reload();
       });
     } else {
-      console.log(magazineForm.value._id);
       // update
       this.magazineSvc.updateMagazine(magazineForm.value).subscribe((data) => {
-        location.reload(), console.log(data);
+        location.reload();
       });
     }
   }

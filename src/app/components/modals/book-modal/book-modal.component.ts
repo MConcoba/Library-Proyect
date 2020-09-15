@@ -44,16 +44,14 @@ export class BookModalComponent implements OnInit, OnDestroy {
 
   onSaveBook(bookForm: NgForm) {
     if (bookForm.value._id == null) {
-      console.log(bookForm.value._id);
       // NEW
       this.bookSvc.saveBook(bookForm.value).subscribe((data) => {
         location.reload();
       });
     } else {
-      console.log(bookForm.value._id);
       // update
       this.bookSvc.updateBook(bookForm.value).subscribe((data) => {
-        location.reload(), console.log(data);
+        location.reload();
       });
     }
   }

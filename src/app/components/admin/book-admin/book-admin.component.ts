@@ -21,11 +21,6 @@ export class BookAdminComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<any>();
   public books: BookInterface;
-  getListBooks(): any {
-    this.bookSvc.getAllBooks().subscribe((book: BookInterface) => {
-      (this.books = book), (this.elements = book);
-    });
-  }
 
   ngOnInit(): void {
     this.getListBooks();
@@ -43,7 +38,11 @@ export class BookAdminComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  getData() {}
+  getListBooks(): any {
+    this.bookSvc.getAllBooks().subscribe((book: BookInterface) => {
+      (this.books = book), (this.elements = book);
+    });
+  }
 
   onDeleteBook(id: string): void {
     if (confirm('Está seguro de eliminar este libro?')) {
