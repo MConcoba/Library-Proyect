@@ -8,24 +8,26 @@ import { MagazineAdminComponent } from './components/admin/magazine-admin/magazi
 import { UserAdminComponent } from './components/admin/user-admin/user-admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CheckLoginGuard } from './guards/check-admin.guard';
+import { NotLogin } from './guards/not-login.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'user/login', component: LoginComponent },
+  { path: 'user/login', component: LoginComponent, canActivate: [NotLogin] },
   {
     path: 'admin/user',
     component: UserAdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, CheckLoginGuard],
   }, // TODO: only users auth
   {
     path: 'admin/book',
     component: BookAdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, CheckLoginGuard],
   }, // TODO: only users auth
   {
     path: 'admin/magazine',
     component: MagazineAdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, CheckLoginGuard],
   },
   {
     path: 'user/profile',

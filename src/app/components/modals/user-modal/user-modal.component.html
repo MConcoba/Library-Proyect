@@ -1,1 +1,155 @@
-<p>user-modal works!</p>
+<div
+  id="modalUser"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{
+            !this.authSvc.userSelected._id ? 'Nuevo Usuario' : 'Editar Usuario'
+          }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          name="formUser"
+          class="form-user"
+          #formUser="ngForm"
+          (ngSubmit)="onSaveUser(formUser)"
+        >
+          <input
+            type="text"
+            id="_id"
+            name="_id"
+            class="form-control"
+            [(ngModel)]="this.authSvc.userSelected._id"
+            required
+          />
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="">Nombres</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                placeholder="Nombres"
+                [(ngModel)]="this.authSvc.userSelected.name"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Apellidos</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                class="form-control"
+                placeholder="Apellidos"
+                [(ngModel)]="this.authSvc.userSelected.lastName"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="">Rol</label>
+              <select
+                [(ngModel)]="opcionSeleccionado"
+                name="role"
+                id="role"
+                class="form-control"
+                [(ngModel)]="this.authSvc.userSelected.role"
+                (change)="capturar()"
+              >
+                <option value="" disabled selected>--Seleccionar--</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="catedratico">Catedratico</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Contraseña</label>
+              <input
+                type="contraseña"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Contraseña"
+                [(ngModel)]="this.authSvc.userSelected.password"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="">Carnet</label>
+              <input
+                mdInput
+                #carnet
+                [disabled]="opcionSeleccionado != 'estudiante'"
+                type="text"
+                id="canert"
+                name="carnet"
+                class="form-control"
+                placeholder="Carnet"
+                [(ngModel)]="this.authSvc.userSelected.carnet"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">DPI</label>
+              <input
+                [disabled]="opcionSeleccionado != 'catedratico'"
+                type="text"
+                id="dpi"
+                name="dpi"
+                class="form-control"
+                placeholder="DPI"
+                [(ngModel)]="this.authSvc.userSelected.dpi"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group"></div>
+          <button
+            [disabled]="
+              (this.authSvc.userSelected.dpi != null ||
+                this.authSvc.userSelected.carnet != null) &&
+              this.authSvc.userSelected.name != null &&
+              this.authSvc.userSelected.lastName != null &&
+              this.authSvc.userSelected.role != null &&
+              this.authSvc.userSelected.password != null
+            "
+            type="submit"
+            class="btn btn-primary float-right"
+          >
+            Guardar Usuario
+          </button>
+
+          <button
+            type="button"
+            mat-raised-button
+            color="warn"
+            class="btn float-left"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

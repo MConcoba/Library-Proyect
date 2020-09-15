@@ -5,7 +5,9 @@
 >
   <!-- Navbar brand -->
   <mdb-navbar-brand
-    ><a class="navbar-brand" href="">BIBLIOTECA</a></mdb-navbar-brand
+    ><a class="navbar-brand" routerLink="" routerLinkActive="active"
+      >BIBLIOTECA</a
+    ></mdb-navbar-brand
   >
 
   <!-- Collapsible content -->
@@ -19,7 +21,7 @@
           *ngIf="isAdmin === 'admin' && isLogged"
           class="nav-link waves-light"
           mdbWavesEffect
-          >Usuario<span class="sr-only">(current)</span></a
+          >Usuario</a
         >
       </li>
       <li class="nav-item">

@@ -14,6 +14,7 @@ import { HeadersComponent } from './components/headers/headers.component';
 import { HomeComponent } from './components/home/home.component';
 import { BookModalComponent } from './components/modals/book-modal/book-modal.component';
 import { MagazineModalComponent } from './components/modals/magazine-modal/magazine-modal.component';
+import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
 import { BookUserComponent } from './components/user/book-user/book-user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { MagazineUserComponent } from './components/user/magazine-user/magazine-user.component';
@@ -28,19 +29,25 @@ import { MagazineService } from './services/magazine-service.service';
 @NgModule({
   declarations: [
     AppComponent,
+    // Iniciles
+    HeadersComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent,
+    // Admin
     BookAdminComponent,
     MagazineAdminComponent,
     UserAdminComponent,
+    // user
     BookUserComponent,
     MagazineUserComponent,
-    HeadersComponent,
-    TruncateTextPipe,
-    FilterPipe,
+    ProfileComponent,
+    // Modals
     BookModalComponent,
     MagazineModalComponent,
+    UserModalComponent,
+    // Pipes
+    TruncateTextPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

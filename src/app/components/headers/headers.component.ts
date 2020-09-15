@@ -32,6 +32,8 @@ export class HeadersComponent implements OnInit, OnDestroy {
     this.authSvc.isAdmin$
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => (this.isAdmin = res));
+
+    this.onCheckUser();
   }
 
   ngOnDestroy(): void {
@@ -44,5 +46,24 @@ export class HeadersComponent implements OnInit, OnDestroy {
   }
   onLogout(): void {
     this.authSvc.logout();
+  }
+
+  onCheckUser(): void {
+    if (
+      this.authSvc.getRole() === 'admin' &&
+      this.authSvc.getCurrentUser() != null
+    ) {
+      this.isLogged = true;
+      this.isAdmin = 'admin';
+    } else if (
+      (this.authSvc.getRole() === 'estudiante' ||
+        this.authSvc.getRole() === 'catedratico') &&
+      this.authSvc.getCurrentUser() != null
+    ) {
+      this.isAdmin = '';
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
   }
 }

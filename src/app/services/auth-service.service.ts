@@ -23,23 +23,27 @@ export class AuthService {
     'Content-Type': 'application/json',
   });
 
-  registerUser(userDataRegister: User): Observable<any> {
-    const urlApi = 'http://localhost:3000/api/Users';
-    return this.http
-      .post<UserInterface>(urlApi, userDataRegister, { headers: this.headers })
-      .pipe(map((data) => data));
-  }
-
-  loginuser(authData: User): Observable<any> {
-    const urlApi = 'http://localhost:3000/api/login';
-    return this.http
-      .post<UserInterface>(urlApi, authData)
-      .pipe(map((data) => data));
-  }
+  users: Observable<any>;
+  user: Observable<any>;
+  public userSelected: UserInterface = {
+    _id: '',
+    role: '',
+    carnet: '',
+    dpi: '',
+    name: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    password: '',
+    amount_book_borrowed: 0,
+    amount_magazine_borrowed: 0,
+    books_borrowed: ['string'],
+    magazines_borrowed: ['string'],
+  };
 
   setUser(user: UserInterface): void {
-    const userstring = JSON.stringify(user);
-    localStorage.setItem('currentUser', userstring);
+    let user_string = JSON.stringify(user);
+    localStorage.setItem('currentUser', user_string);
   }
 
   setToken(token): void {
@@ -50,15 +54,40 @@ export class AuthService {
     return localStorage.getItem('accessToken');
   }
 
+  getTokenAuth() {
+    const user = JSON.parse(localStorage.getItem('user')) || null;
+    const dato = user.Token;
+    console.log(dato);
+    return dato;
+  }
+
+  getRole() {
+    const userString = localStorage.getItem('user');
+    if (userString != null) {
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      const dato = user.role;
+      return dato;
+    } else {
+      return null;
+    }
+  }
+
   getCurrentUser(): UserInterface {
-    const userstring = localStorage.getItem('user');
-    console.log(userstring);
-    if (userstring != null) {
-      const user: UserInterface = JSON.parse(userstring);
+    const userString = localStorage.getItem('user');
+    if (userString != null) {
+      const user: UserInterface = JSON.parse(userString);
       return user;
     } else {
       return null;
     }
+  }
+
+  logoutUser() {
+    let accessToken = localStorage.getItem('accessToken');
+    const url_api = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('currentUser');
+    return this.http.post<UserInterface>(url_api, { headers: this.headers });
   }
 
   get isLogged(): Observable<boolean> {
@@ -85,7 +114,7 @@ export class AuthService {
   }
 
   private saveLocalStorage(user: UserResponse): void {
-    const { id, message, ...rest } = user;
+    const { _id, message, ...rest } = user;
     localStorage.setItem('user', JSON.stringify(rest));
   }
 
@@ -102,5 +131,50 @@ export class AuthService {
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
+  }
+
+  // ------------------------ USER -----------------------------------
+
+  getAllUsers() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getTokenAuth());
+    return this.http.get(`/api/get-users`, { headers });
+  }
+
+  getUserById(id: string) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    const urlApi = `/api/get-user/${id}`;
+    return (this.user = this.http.get(urlApi));
+  }
+
+  createUser(userData: UserInterface) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getTokenAuth());
+    return this.http
+      .post<UserInterface>(`/api/create-user`, userData, { headers })
+      .pipe(map((data: UserInterface) => data));
+  }
+
+  updateUser(userData: UserInterface) {
+    const idUser = userData._id;
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .put<UserInterface>(`/api/update-user/${idUser}`, userData, { headers })
+      .pipe(map((data: UserInterface) => data));
+  }
+
+  deleteUser(idUser: string): Observable<UserInterface | void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .delete<UserInterface>(`/api/delete-user/${idUser}`, { headers })
+      .pipe(map((data) => data));
   }
 }
