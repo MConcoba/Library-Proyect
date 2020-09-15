@@ -7,6 +7,8 @@ import { BookAdminComponent } from './components/admin/book-admin/book-admin.com
 import { MagazineAdminComponent } from './components/admin/magazine-admin/magazine-admin.component';
 import { UserAdminComponent } from './components/admin/user-admin/user-admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BookUserComponent } from './components/user/book-user/book-user.component';
+import { MagazineUserComponent } from './components/user/magazine-user/magazine-user.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CheckLoginGuard } from './guards/check-admin.guard';
 import { NotLogin } from './guards/not-login.guard';
@@ -18,12 +20,12 @@ const routes: Routes = [
     path: 'admin/user',
     component: UserAdminComponent,
     canActivate: [AuthGuard, CheckLoginGuard],
-  }, // TODO: only users auth
+  },
   {
     path: 'admin/book',
     component: BookAdminComponent,
     canActivate: [AuthGuard, CheckLoginGuard],
-  }, // TODO: only users auth
+  },
   {
     path: 'admin/magazine',
     component: MagazineAdminComponent,
@@ -34,7 +36,16 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },
-  // TODO: only users auth
+  {
+    path: 'user/book',
+    component: BookUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/magazine',
+    component: MagazineUserComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
