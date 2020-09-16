@@ -43,9 +43,16 @@ export class MagazineService {
     return this.http.get(urlApi);
   }
 
-  getBookMagazineId(id: string) {
+  getMagazineId(id: string) {
     const urlApi = `http://localhost:3000/api/get-magazines/${id}`;
     return (this.magazine = this.http.get(urlApi));
+  }
+
+  getAllMagazineLend() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http.get(`/api/get-magazine-lend`, { headers });
   }
 
   saveMagazine(magazineData: MagazineInterface) {
@@ -58,23 +65,47 @@ export class MagazineService {
   }
 
   updateMagazine(magazineData: MagazineInterface) {
-    const idBook = magazineData._id;
+    const idMagazine = magazineData._id;
     let headers = new HttpHeaders();
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');
     headers = headers.append('Authorization', this.getToken());
     return this.http
-      .put<MagazineInterface>(`/api/update-magazine/${idBook}`, magazineData, {
-        headers,
-      })
+      .put<MagazineInterface>(
+        `/api/update-magazine/${idMagazine}`,
+        magazineData,
+        {
+          headers,
+        }
+      )
       .pipe(map((data: MagazineInterface) => data));
   }
 
-  deleteMagazine(idBook: string): Observable<MagazineInterface | void> {
+  deleteMagazine(idMagazine: string): Observable<MagazineInterface | void> {
     let headers = new HttpHeaders();
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');
     headers = headers.append('Authorization', this.getToken());
     return this.http
-      .delete<MagazineInterface>(`/api/delete-magazine/${idBook}`, { headers })
+      .delete<MagazineInterface>(`/api/delete-magazine/${idMagazine}`, {
+        headers,
+      })
+      .pipe(map((data) => data));
+  }
+
+  lendMagazine(idMagazine: string): Observable<MagazineInterface | void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .get<MagazineInterface>(`/api/lend-magazine/${idMagazine}`, { headers })
+      .pipe(map((data) => data));
+  }
+
+  returnMagazine(idMagazine: string): Observable<MagazineInterface | void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .get<MagazineInterface>(`/api/return-magazine/${idMagazine}`, { headers })
       .pipe(map((data) => data));
   }
 }
