@@ -32,13 +32,20 @@ export class BookService {
   getToken() {
     const user = JSON.parse(localStorage.getItem('user')) || null;
     const dato = user.Token;
-    console.log(dato);
+
     return dato;
   }
 
   getAllBooks() {
     const urlApi = `http://localhost:3000/api/get-books`;
     return this.http.get(urlApi);
+  }
+
+  getAllBooksLend() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http.get(`/api/get-books-lend`, { headers });
   }
 
   getBookById(id: string) {
@@ -71,6 +78,24 @@ export class BookService {
     headers = headers.append('Authorization', this.getToken());
     return this.http
       .delete<BookInterface>(`/api/delete-book/${idBook}`, { headers })
+      .pipe(map((data) => data));
+  }
+
+  lendBook(idBook: string): Observable<BookInterface | void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .get<BookInterface>(`/api/lend-book/${idBook}`, { headers })
+      .pipe(map((data) => data));
+  }
+
+  returnBook(idBook: string): Observable<BookInterface | void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http
+      .get<BookInterface>(`/api/return-book/${idBook}`, { headers })
       .pipe(map((data) => data));
   }
 }

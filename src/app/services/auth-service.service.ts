@@ -57,7 +57,7 @@ export class AuthService {
   getTokenAuth() {
     const user = JSON.parse(localStorage.getItem('user')) || null;
     const dato = user.Token;
-    console.log(dato);
+
     return dato;
   }
 
@@ -140,6 +140,20 @@ export class AuthService {
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');
     headers = headers.append('Authorization', this.getTokenAuth());
     return this.http.get(`/api/get-users`, { headers });
+  }
+
+  userProfile() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http.get(`/api/user-profile`, { headers });
+  }
+
+  getUserProfile() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getTokenAuth());
+    return this.http.get(`/api/user-profile`, { headers });
   }
 
   getUserById(id: string) {

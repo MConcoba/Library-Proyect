@@ -34,7 +34,7 @@ export class MagazineService {
   getToken() {
     const user = JSON.parse(localStorage.getItem('user')) || null;
     const dato = user.Token;
-    console.log(dato);
+
     return dato;
   }
 
