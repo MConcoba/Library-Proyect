@@ -1,1 +1,26 @@
-<p>profile works!</p>
+<section id="profile" class="container">
+  <div class="row mt-5">
+    <div
+      class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center card"
+    >
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+      </div>
+      <div class="row user-details">
+        <div class="col-12">
+          <img
+            width="75%"
+            src="../../../../assets/logoUser.png"
+            class="rounded-circle img-thumbnail"
+            alt="profile"
+          />
+          <h5>{{ users.name }} {{ users.lastName }}</h5>
+          <hr />
+          <span>Usuario: {{ users.userName }}</span>
+          <br />
+          <span>Corrreo: {{ users.email }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
