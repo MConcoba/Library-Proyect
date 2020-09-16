@@ -68,12 +68,22 @@
         </a>
       </li>
       <li class="nav-item">
-        <a *ngIf="isAdmin != 'admin' && isLogged" class="nav-link">
+        <a
+          *ngIf="isAdmin != 'admin' && isLogged"
+          class="nav-link"
+          routerLink="/user/book"
+          routerLinkActive="active"
+        >
           <mdb-icon fab icon=""></mdb-icon>Libros<span class="caret"></span>
         </a>
       </li>
       <li class="nav-item">
-        <a *ngIf="isAdmin != 'admin' && isLogged" class="nav-link">
+        <a
+          *ngIf="isAdmin != 'admin' && isLogged"
+          class="nav-link"
+          routerLink="/user/magazine"
+          routerLinkActive="active"
+        >
           <mdb-icon fab icon=""></mdb-icon>Revistas<span class="caret"></span>
         </a>
       </li>
@@ -97,7 +107,8 @@
             *ngIf="isLogged"
             class="dropdown-item waves-light"
             mdbWavesEffect
-            href="/user/login"
+            routerLink="/user/profile"
+            routerLinkActive="active"
             >Mi cuenta</a
           >
           <a

@@ -60,7 +60,7 @@ export class HeadersComponent implements OnInit, OnDestroy {
         this.authSvc.getRole() === 'catedratico') &&
       this.authSvc.getCurrentUser() != null
     ) {
-      this.isAdmin = '';
+      this.isAdmin = 'user';
       this.isLogged = true;
     } else {
       this.isLogged = false;
