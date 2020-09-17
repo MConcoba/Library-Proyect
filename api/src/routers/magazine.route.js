@@ -36,5 +36,15 @@ api.get(
   md_auth.ensureAuth,
   MagazineController.getMagazineLendUser
 );
+api.get(
+  '/get-count-magazine-lend-porcentaje',
+  md_auth.ensureAuth,
+  MagazineController.getMagazinekCoutnLendProcentaje
+);
+api.get(
+  '/get-count-magazine-lend',
+  md_auth.ensureAuth,
+  MagazineController.getMagazineCoutnLend
+);
 
 module.exports = api;

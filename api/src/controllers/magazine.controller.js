@@ -82,6 +82,52 @@ const getMagazineLendUser = async (req, res) => {
   }
 };
 
+const getMagazinekCoutnLendProcentaje = async (req, res) => {
+  const totalMagazine = await Magazine.aggregate([
+    {
+      $group: {
+        _id: null,
+        countLend: { $sum: '$countLend' },
+      },
+    },
+  ]);
+  let si;
+  for (let x = 0; x < totalMagazine.length; x++) {
+    si = totalMagazine[x].countLend;
+    console.log(si);
+  }
+  console.log(si);
+  const MagazineTotalLend = await Magazine.aggregate([
+    {
+      $group: {
+        _id: '$_id',
+        countLend: { $sum: '$countLend' },
+      },
+    },
+
+    {
+      $addFields: {
+        _id: '$_id',
+        multi100: { $multiply: ['$countLend', 100] },
+        totalPorcentaje: {
+          $trunc: [{ $divide: [{ $multiply: ['$countLend', 100] }, si] }, 5],
+          /* $divide: [{ $multiply: ['$countLend', 100] }, si], */
+        },
+      },
+    },
+  ]);
+  res.status(202).send(MagazineTotalLend);
+};
+
+const getMagazineCoutnLend = async (req, res) => {
+  const magazineList = await Magazine.find({}, { _id: 0, countLend: 1 });
+  if (!magazineList) {
+    return res.status(404).send({ menssage: 'ERROR: Magazine not exists' });
+  } else {
+    return res.status(202).send(magazineList);
+  }
+};
+
 const updateMagazine = async (req, res) => {
   var isAdmin = req.user.sub;
   var params = req.body;
@@ -288,6 +334,8 @@ module.exports = {
   newMagazine,
   getMagazines,
   getMagazine,
+  getMagazinekCoutnLendProcentaje,
+  getMagazineCoutnLend,
   getMagazineLendUser,
   updateMagazine,
   deleteMagazine,
