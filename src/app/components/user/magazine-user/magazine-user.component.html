@@ -1,1 +1,152 @@
-<p>magazine-user works!</p>
+<div class="container">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <div class="col-md-12 mr-auto">
+        <div class="md-form">
+          <input
+            type="text"
+            name="filter"
+            class="form-control"
+            id="search"
+            mdbInput
+          />
+          <label for="search">Buscar</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="col-md-10 mx-auto">
+        <div class="md-form">
+          <select class="browser-default custom-select">
+            <option selected>Ordenar por</option>
+            <option value="1">No</option>
+            <option value="2">Copias</option>
+            <option value="3">Disponibles</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <mat-tab-group>
+      <mat-tab label="Prestar Libro">
+        <section id="magazines" class="mt-5">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-6 col-md-4 mb-4"
+                *ngFor="let book of magazines"
+              >
+                <div class="card_book">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <h3>{{ book.title }}</h3>
+
+                      <h5 class="card-title font-italic font-weight-light">
+                        <u>({{ book.author }})</u>
+                      </h5>
+                      <p class="card-text">
+                        {{ book.description | truncateText: 15 }}
+                      </p>
+                      <div class="container-precio-idioma">
+                        <p class="badge badge-info"></p>
+                        <p class="badge badge-info">
+                          Disponibles:
+                          {{ book.available }}
+                        </p>
+                      </div>
+
+                      <a
+                        class="btn btn-block btn-primary"
+                        target="_blank"
+                        (click)="onLendMagazine(book._id)"
+                        >Pedir</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </mat-tab>
+      <mat-tab label="Devolver Libro">
+        <section
+          id="magazine"
+          class="mt-5"
+          *ngIf="magazinesLend != null; else nada"
+        >
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-6 col-md-4 mb-4"
+                *ngFor="let magazine of magazinesLend"
+              >
+                <div class="card_magazine">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <h3>{{ magazine.magazine.title }}</h3>
+
+                      <h5 class="card-title font-italic font-weight-light">
+                        <u>({{ magazine.magazine.author }})</u>
+                      </h5>
+                      <p class="card-text">
+                        {{ magazine.magazine.description | truncateText: 15 }}
+                      </p>
+                      <div class="container-precio-idioma">
+                        <p class="badge badge-info"></p>
+                        <p class="badge badge-info"></p>
+                      </div>
+
+                      <a
+                        class="btn btn-block btn-danger"
+                        target="_blank"
+                        (click)="onReturnMagazine(magazine.magazine._id)"
+                        >Devolver</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </mat-tab>
+      <mat-tab label="Buscar">
+        <table mdbTable class="z-depth-1">
+          <thead>
+            <tr>
+              <th class="no" scope="col">No.</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Título</th>
+              <th scope="col">Edicion</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Frecuencia</th>
+              <th scope="col">Ejemplares</th>
+              <th scope="col">Temas</th>
+              <th scope="col">Palabras Claves</th>
+              <th class="copies" scope="col">Copias</th>
+              <th class="avilable" scope="col">Disponibles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let magazine of magazines; index as i">
+              <th class="no" scope="row">{{ i + 1 }}</th>
+              <td>{{ magazine.author }}</td>
+              <td>{{ magazine.title }}</td>
+              <td>{{ magazine.edicion }}</td>
+              <td>{{ magazine.description | truncateText: 10 }}</td>
+              <td>{{ magazine.frequencyActs }}</td>
+              <td>{{ magazine.specimens }}</td>
+              <td>{{ magazine.topics }}</td>
+              <td>{{ magazine.keywords }}</td>
+              <td class="copies">{{ magazine.copies }}</td>
+              <td class="avilable">{{ magazine.available }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<ng-template #nada>No hay nada que mostrar</ng-template>

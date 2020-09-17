@@ -120,11 +120,14 @@ const getMagazinekCoutnLendProcentaje = async (req, res) => {
 };
 
 const getMagazineCoutnLend = async (req, res) => {
-  const magazineList = await Magazine.find({}, { _id: 0, countLend: 1 });
+  const magazineList = await Magazine.find(
+    {},
+    { _id: 0, countLend: 1, title: 1, author: 1 }
+  );
   if (!magazineList) {
     return res.status(404).send({ menssage: 'ERROR: Magazine not exists' });
   } else {
-    return res.status(202).send(magazineList);
+    return res.status(202).send({ list: magazineList });
   }
 };
 

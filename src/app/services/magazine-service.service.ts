@@ -55,6 +55,13 @@ export class MagazineService {
     return this.http.get(`/api/get-magazine-lend`, { headers });
   }
 
+  getMagazineCountLend() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http.get(`/api/get-count-magazines-lend`, { headers });
+  }
+
   saveMagazine(magazineData: MagazineInterface) {
     let headers = new HttpHeaders();
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');

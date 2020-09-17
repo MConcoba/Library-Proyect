@@ -8,4 +8,5 @@ export interface BookInterface {
   topics: [string];
   copies: number;
   available: number;
+  countLend: number;
 }

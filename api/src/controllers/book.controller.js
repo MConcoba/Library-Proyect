@@ -147,11 +147,14 @@ const getBoookCoutnLendProcentaje = async (req, res) => {
 };
 
 const getBoookCoutnLend = async (req, res) => {
-  const booksList = await Book.find({}, { _id: 0, countLend: 1 });
+  const booksList = await Book.find(
+    {},
+    { _id: 0, countLend: 1, title: 1, author: 1 }
+  );
   if (!booksList) {
     return res.status(404).send({ menssage: 'ERROR: Book not exists' });
   } else {
-    return res.status(202).send(booksList);
+    return res.status(202).send({ list: booksList });
   }
 };
 

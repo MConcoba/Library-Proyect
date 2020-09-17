@@ -5,6 +5,8 @@ import { LoginComponent } from 'src/app/components/user/login/login.component';
 import { ProfileComponent } from 'src/app/components/user/profile/profile.component';
 import { BookAdminComponent } from './components/admin/book-admin/book-admin.component';
 import { MagazineAdminComponent } from './components/admin/magazine-admin/magazine-admin.component';
+import { BooksReportComponent } from './components/admin/reports/books-report/books-report.component';
+import { MagazineReportComponent } from './components/admin/reports/magazine-report/magazine-report.component';
 import { UserAdminComponent } from './components/admin/user-admin/user-admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BookUserComponent } from './components/user/book-user/book-user.component';
@@ -29,6 +31,16 @@ const routes: Routes = [
   {
     path: 'admin/magazine',
     component: MagazineAdminComponent,
+    canActivate: [AuthGuard, CheckLoginGuard],
+  },
+  {
+    path: 'admin/reports-book',
+    component: BooksReportComponent,
+    canActivate: [AuthGuard, CheckLoginGuard],
+  },
+  {
+    path: 'admin/reports-magazine',
+    component: MagazineReportComponent,
     canActivate: [AuthGuard, CheckLoginGuard],
   },
   {

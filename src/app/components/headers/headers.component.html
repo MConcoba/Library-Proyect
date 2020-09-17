@@ -42,6 +42,39 @@
           >Revistas</a
         >
       </li>
+      <li *ngIf="isLogged" class="nav-item dropdown" dropdown>
+        <a
+          dropdownToggle
+          mdbWavesEffect
+          type="button"
+          class="nav-link dropdown-toggle waves-light"
+          mdbWavesEffect
+        >
+          <mdb-icon fas></mdb-icon> Reportes <span class="caret"></span
+        ></a>
+        <div
+          *dropdownMenu
+          class="dropdown-menu dropdown-menu-right dropdown dropdown-primary"
+          role="menu"
+        >
+          <a
+            *ngIf="isLogged"
+            class="dropdown-item waves-light"
+            mdbWavesEffect
+            routerLink="admin/reports-book"
+            routerLinkActive="active"
+            >Libros</a
+          >
+          <a
+            *ngIf="isLogged"
+            class="dropdown-item waves-light"
+            mdbWavesEffect
+            routerLink="admin/reports-magazine"
+            routerLinkActive="active"
+            >Revistas</a
+          >
+        </div>
+      </li>
     </ul>
     <!-- Links -->
 

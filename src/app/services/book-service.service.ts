@@ -22,6 +22,7 @@ export class BookService {
     topics: [''],
     copies: 0,
     available: 0,
+    countLend: 0,
   };
 
   headers: HttpHeaders = new HttpHeaders({
@@ -46,6 +47,13 @@ export class BookService {
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');
     headers = headers.append('Authorization', this.getToken());
     return this.http.get(`/api/get-books-lend`, { headers });
+  }
+
+  getBookCountLend() {
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Headers', 'testheader');
+    headers = headers.append('Authorization', this.getToken());
+    return this.http.get(`/api/get-count-books-lend`, { headers });
   }
 
   getBookById(id: string) {

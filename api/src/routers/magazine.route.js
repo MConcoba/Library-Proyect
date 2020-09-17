@@ -42,7 +42,7 @@ api.get(
   MagazineController.getMagazinekCoutnLendProcentaje
 );
 api.get(
-  '/get-count-magazine-lend',
+  '/get-count-magazines-lend',
   md_auth.ensureAuth,
   MagazineController.getMagazineCoutnLend
 );

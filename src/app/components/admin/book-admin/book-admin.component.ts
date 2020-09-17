@@ -63,6 +63,7 @@ export class BookAdminComponent implements OnInit, OnDestroy {
       topics: [''],
       copies: 0,
       available: 0,
+      countLend: 0,
     };
   }
 
