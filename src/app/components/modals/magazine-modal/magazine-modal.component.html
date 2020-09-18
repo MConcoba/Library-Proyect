@@ -373,3 +373,192 @@
     </div>
   </div>
 </div>
+
+<!-- Delete -->
+
+<div
+  id="modalMagzineDelete"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{
+            !this.magazineSvc.selectedMagazine._id
+              ? 'Nueva Revista'
+              : 'Editar Revista'
+          }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="hidden"
+          id="_idV"
+          name="_id"
+          class="form-control"
+          [(ngModel)]="this.magazineSvc.selectedMagazine._id"
+          required
+        />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Autor</label>
+            <input
+              type="text"
+              id="authorV"
+              name="author"
+              class="form-control"
+              placeholder="Autor"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.author"
+              ng-model="author"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Titulo</label>
+            <input
+              type="text"
+              id="titleV"
+              name="title"
+              class="form-control"
+              placeholder="Titulo"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.title"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Edicion</label>
+          <input
+            type="text"
+            id="edicionV"
+            name="edicion"
+            class="form-control"
+            placeholder="Edicion"
+            [(ngModel)]="this.magazineSvc.selectedMagazine.edicion"
+            disabled
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Frecuencia</label>
+            <input
+              type="text"
+              id="frequencyActsV"
+              name="frequencyActs"
+              class="form-control"
+              placeholder="Frecuencia"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.frequencyActs"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Ejemplares</label>
+            <input
+              type="number"
+              id="specimensV"
+              name="specimens"
+              class="form-control"
+              placeholder="Ejemplares"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.specimens"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Temas</label>
+            <input
+              type="text"
+              id="topicsV"
+              name="topics"
+              class="form-control"
+              placeholder="Temas"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.topics"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Palabras Claves</label>
+            <input
+              type="text"
+              id="keywordsV"
+              name="keywords"
+              class="form-control"
+              placeholder="Palabras Claves"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.keywords"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Descripción</label>
+          <textarea
+            name="description"
+            id="descriptionV"
+            class="form-control"
+            cols="50"
+            rows="4"
+            [(ngModel)]="this.magazineSvc.selectedMagazine.description"
+            disabled
+          ></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Copias</label>
+            <input
+              type="number"
+              id="copiesV"
+              name="copies"
+              class="form-control"
+              placeholder="Copias"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.copies"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Disponibles</label>
+            <input
+              type="number"
+              id="availableV"
+              name="available"
+              class="form-control"
+              placeholder="Disponibles"
+              [(ngModel)]="this.magazineSvc.selectedMagazine.available"
+              disabled
+            />
+          </div>
+        </div>
+        <button
+          (click)="onDeleteBook(this.magazineSvc.selectedMagazine._id)"
+          type="submit"
+          class="btn btn-primary float-right"
+        >
+          Eliminar
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          class="btn float-left"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

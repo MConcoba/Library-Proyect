@@ -306,3 +306,157 @@
     </div>
   </div>
 </div>
+
+<!-- Delete -->
+<div
+  id="modalBookDelete"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Libro</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="hidden"
+          id="_id"
+          name="_id"
+          class="form-control"
+          [(ngModel)]="this.bookSvc.selectedBook._id"
+        />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Autor</label>
+            <input
+              type="text"
+              id="authorV"
+              name="author"
+              class="form-control"
+              placeholder="Autor"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.author"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Titulo</label>
+            <input
+              type="text"
+              id="titleV"
+              name="title"
+              class="form-control"
+              placeholder="Titulo"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.title"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Edicion</label>
+          <input
+            type="text"
+            id="edicionV"
+            name="edicion"
+            class="form-control"
+            placeholder="Edicion"
+            disabled
+            [(ngModel)]="this.bookSvc.selectedBook.edicion"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Temas</label>
+            <input
+              type="text"
+              id="topicsV"
+              name="topics"
+              class="form-control"
+              placeholder="Temas"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.topics"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Palabras Claves</label>
+            <input
+              type="text"
+              id="keywordsV"
+              name="keywords"
+              class="form-control"
+              placeholder="Palabras Claves"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.keywords"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Descripción</label>
+          <textarea
+            name="description"
+            id="descriptionV"
+            class="form-control"
+            cols="50"
+            rows="4"
+            disabled
+            [(ngModel)]="this.bookSvc.selectedBook.description"
+          ></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Copias</label>
+            <input
+              type="number"
+              id="copiesV"
+              name="copies"
+              class="form-control"
+              placeholder="Copias"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.copies"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Disponibles</label>
+            <input
+              type="number"
+              id="availableV"
+              name="available"
+              class="form-control"
+              placeholder="Disponibles"
+              disabled
+              [(ngModel)]="this.bookSvc.selectedBook.available"
+            />
+          </div>
+        </div>
+        <button
+          (click)="onDeleteBook(this.bookSvc.selectedBook._id)"
+          type="submit"
+          class="btn btn-primary float-right"
+        >
+          Eliminar
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          class="btn float-left"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

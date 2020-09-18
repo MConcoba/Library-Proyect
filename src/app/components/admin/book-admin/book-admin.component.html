@@ -95,7 +95,9 @@
             hrf="admin/list-books"
             mat-mini-fab
             color="warn"
-            (click)="onDeleteBook(book._id)"
+            (click)="onPreUpdateBook(book)"
+            data-toggle="modal"
+            data-target="#modalBookDelete"
           >
             <mat-icon>delete</mat-icon>
           </a>

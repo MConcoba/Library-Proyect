@@ -55,4 +55,10 @@ export class BookModalComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  onDeleteBook(id: string): void {
+    this.bookSvc.deleteBook(id).subscribe((data) => {
+      location.reload();
+    });
+  }
 }

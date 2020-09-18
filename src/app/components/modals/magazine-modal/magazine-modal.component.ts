@@ -47,4 +47,10 @@ export class MagazineModalComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  onDeleteBook(id: string): void {
+    this.magazineSvc.deleteMagazine(id).subscribe((data) => {
+      location.reload();
+    });
+  }
 }

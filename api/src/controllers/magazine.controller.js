@@ -251,7 +251,7 @@ const lendMagazine = async (req, res) => {
       if (userMagazine.magazines_borrowed == 0) {
         const magazineBorrow = await Magazine.findOneAndUpdate(
           { _id: magazineID },
-          { $inc: { available: -1 } }
+          { $inc: { available: -1, countLend: 1 } }
         );
         if (magazineBorrow) {
           const userBorrowing = await User.findOneAndUpdate(

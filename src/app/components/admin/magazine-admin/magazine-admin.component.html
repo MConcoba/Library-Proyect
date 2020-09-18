@@ -99,7 +99,9 @@
             hrf="admin/list-books"
             mat-mini-fab
             color="warn"
-            (click)="onDeleteBook(magazine._id)"
+            (click)="onPreUpdateBook(magazine)"
+            data-toggle="modal"
+            data-target="#modalMagzineDelete"
           >
             <mat-icon>delete</mat-icon>
           </a>
