@@ -94,9 +94,8 @@ const getMagazinekCoutnLendProcentaje = async (req, res) => {
   let si;
   for (let x = 0; x < totalMagazine.length; x++) {
     si = totalMagazine[x].countLend;
-    console.log(si);
   }
-  console.log(si);
+
   const MagazineTotalLend = await Magazine.aggregate([
     {
       $group: {

@@ -33,8 +33,6 @@ export class BooksReportComponent implements OnInit {
     this.bookSvc.getBookCountLend().subscribe((book) => {
       const dataT = book['list'].map((res) => res.countLend);
       const la = book['list'].map((res) => res.author);
-      console.log(dataT);
-      console.log(la);
 
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < dataT.length; i++) {

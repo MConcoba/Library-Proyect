@@ -121,9 +121,7 @@ const getBoookCoutnLendProcentaje = async (req, res) => {
   let si;
   for (let x = 0; x < totalBook.length; x++) {
     si = totalBook[x].countLend;
-    console.log(si);
   }
-  console.log(si);
   const booksTotalLend = await Book.aggregate([
     {
       $group: {

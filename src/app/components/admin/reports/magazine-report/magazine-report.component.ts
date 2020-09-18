@@ -31,9 +31,6 @@ export class MagazineReportComponent implements OnInit {
     this.magazineSvc.getMagazineCountLend().subscribe((magazine) => {
       const dataT = magazine['list'].map((res) => res.countLend);
       const la = magazine['list'].map((res) => res.author);
-      console.log(dataT);
-      console.log(la);
-
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < dataT.length; i++) {
         this.colors.push(
