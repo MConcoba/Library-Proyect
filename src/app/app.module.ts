@@ -8,6 +8,7 @@ import { ChartsModule } from 'ng2-charts';
 // Services
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AboutComponent } from './components/about/about.component';
 import { BookAdminComponent } from './components/admin/book-admin/book-admin.component';
 import { MagazineAdminComponent } from './components/admin/magazine-admin/magazine-admin.component';
 import { BooksReportComponent } from './components/admin/reports/books-report/books-report.component';
@@ -19,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BookModalComponent } from './components/modals/book-modal/book-modal.component';
 import { MagazineModalComponent } from './components/modals/magazine-modal/magazine-modal.component';
 import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BookUserComponent } from './components/user/book-user/book-user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { MagazineUserComponent } from './components/user/magazine-user/magazine-user.component';
@@ -29,7 +31,6 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { AuthService } from './services/auth-service.service';
 import { BookService } from './services/book-service.service';
 import { MagazineService } from './services/magazine-service.service';
-import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AboutComponent } from './components/about/about.component';
     HeadersComponent,
     HomeComponent,
     LoginComponent,
+    NotFoundComponent,
     // Admin
     BookAdminComponent,
     MagazineAdminComponent,
