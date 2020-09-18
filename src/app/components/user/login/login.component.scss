@@ -1,8 +1,10 @@
 .login-form {
+  background-color: radial-gradient(center center, circle, black, #1162ac);
+  width: 350px;
   padding: 4rem 1rem;
 
   mat-card {
-    max-width: 300px;
+    max-width: 350px;
     margin: 2rem auto;
     text-align: center;
     height: 350px;

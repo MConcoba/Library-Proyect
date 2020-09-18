@@ -42,7 +42,11 @@
           >Revistas</a
         >
       </li>
-      <li *ngIf="isLogged" class="nav-item dropdown" dropdown>
+      <li
+        *ngIf="isAdmin === 'admin' && isLogged"
+        class="nav-item dropdown"
+        dropdown
+      >
         <a
           dropdownToggle
           mdbWavesEffect
@@ -80,7 +84,7 @@
 
     <form class="form-inline mr-auto ml-auto waves-light" mdbWavesEffect>
       <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+        <input class="form-control mr-sm-2" type="text" placeholder="Buscar" />
       </div>
     </form>
 
