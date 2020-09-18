@@ -4,11 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ChartsModule } from 'ng2-charts';
 // Services
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookAdminComponent } from './components/admin/book-admin/book-admin.component';
 import { MagazineAdminComponent } from './components/admin/magazine-admin/magazine-admin.component';
+import { BooksReportComponent } from './components/admin/reports/books-report/books-report.component';
+import { MagazineReportComponent } from './components/admin/reports/magazine-report/magazine-report.component';
+import { ReportsComponent } from './components/admin/reports/reports.component';
 import { UserAdminComponent } from './components/admin/user-admin/user-admin.component';
 import { HeadersComponent } from './components/headers/headers.component';
 import { HomeComponent } from './components/home/home.component';
@@ -25,6 +29,7 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { AuthService } from './services/auth-service.service';
 import { BookService } from './services/book-service.service';
 import { MagazineService } from './services/magazine-service.service';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +53,10 @@ import { MagazineService } from './services/magazine-service.service';
     // Pipes
     TruncateTextPipe,
     FilterPipe,
+    ReportsComponent,
+    BooksReportComponent,
+    MagazineReportComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +67,7 @@ import { MagazineService } from './services/magazine-service.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
+    ChartsModule,
   ],
   exports: [],
   providers: [AuthService, BookService, MagazineService],

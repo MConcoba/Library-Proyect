@@ -96,7 +96,12 @@
         </a>
       </li>
       <li class="nav-item">
-        <a *ngIf="!isLogged" class="nav-link">
+        <a
+          *ngIf="!isLogged"
+          class="nav-link"
+          data-toggle="modal"
+          data-target="#about"
+        >
           <mdb-icon fab icon=""></mdb-icon>Aceraca de<span class="caret"></span>
         </a>
       </li>
@@ -159,3 +164,4 @@
   <!-- Collapsible content -->
 </mdb-navbar>
 <!--/.Navbar-->
+<app-about></app-about>
