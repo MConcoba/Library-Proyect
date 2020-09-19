@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter',
+  name: 'filterUser',
 })
-export class FilterPipe implements PipeTransform {
+export class FilterUserPipe implements PipeTransform {
   transform(value: any, arg: any): any {
     if (arg === '') {
       return value;
@@ -11,8 +11,8 @@ export class FilterPipe implements PipeTransform {
     const resultPosts = [];
     for (const post of value) {
       if (
-        post.title.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
-        post.author.toLowerCase().indexOf(arg.toLowerCase()) > -1
+        post.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
+        post.userName.toLowerCase().indexOf(arg.toLowerCase()) > -1
       ) {
         resultPosts.push(post);
       }

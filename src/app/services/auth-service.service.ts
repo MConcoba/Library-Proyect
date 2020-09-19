@@ -127,7 +127,7 @@ export class AuthService {
   private handlerError(err): Observable<never> {
     let errorMessage = 'An error occured retrienving data';
     if (err) {
-      errorMessage = `Error: code ${err.message}`;
+      errorMessage = `Error: Algo ocurruió mal :( Pongase en contacto con el Administrador`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

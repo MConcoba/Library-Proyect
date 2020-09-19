@@ -50,4 +50,10 @@ export class UserModalComponent implements OnInit, OnDestroy {
   capturar() {
     this.verSeleccion = this.opcionSeleccionado;
   }
+
+  onDeleteUser(id: string): void {
+    this.authSvc.deleteUser(id).subscribe((data) => {
+      location.reload();
+    });
+  }
 }

@@ -9,24 +9,12 @@
             class="form-control"
             id="search"
             mdbInput
+            [(ngModel)]="filterPost"
           />
-          <label for="search">Buscar</label>
+          <label for="search">Buscar (Titulo o Autor)</label>
         </div>
       </div>
     </div>
-    <div class="form-group col-md-4">
-      <div class="col-md-10 mx-auto">
-        <div class="md-form">
-          <select class="browser-default custom-select">
-            <option selected>Ordenar por</option>
-            <option value="1">No</option>
-            <option value="2">Copias</option>
-            <option value="3">Disponibles</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
     <mat-tab-group>
       <mat-tab label="Prestar Libro">
         <section id="magazines" class="mt-5">
@@ -34,7 +22,7 @@
             <div class="row">
               <div
                 class="col-xs-12 col-sm-6 col-md-4 mb-4"
-                *ngFor="let book of magazines"
+                *ngFor="let book of magazines | filter: filterPost; index as i"
               >
                 <div class="card_book">
                   <div class="card">
@@ -79,18 +67,21 @@
             <div class="row">
               <div
                 class="col-xs-12 col-sm-6 col-md-4 mb-4"
-                *ngFor="let magazine of magazinesLend"
+                *ngFor="
+                  let magazine of magazinesLend | filter: filterPost;
+                  index as i
+                "
               >
                 <div class="card_magazine">
                   <div class="card">
                     <div class="card-body text-center">
-                      <h3>{{ magazine.magazine.title }}</h3>
+                      <h3>{{ magazine.title }}</h3>
 
                       <h5 class="card-title font-italic font-weight-light">
-                        <u>({{ magazine.magazine.author }})</u>
+                        <u>({{ magazine.author }})</u>
                       </h5>
                       <p class="card-text">
-                        {{ magazine.magazine.description | truncateText: 15 }}
+                        {{ magazine.description | truncateText: 15 }}
                       </p>
                       <div class="container-precio-idioma">
                         <p class="badge badge-info"></p>
@@ -100,7 +91,7 @@
                       <a
                         class="btn btn-block btn-danger"
                         target="_blank"
-                        (click)="onReturnMagazine(magazine.magazine._id)"
+                        (click)="onReturnMagazine(magazine._id)"
                         >Devolver</a
                       >
                     </div>
@@ -129,7 +120,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let magazine of magazines; index as i">
+            <tr
+              *ngFor="
+                let magazine of magazines | filter: filterPost;
+                index as i
+              "
+            >
               <th class="no" scope="row">{{ i + 1 }}</th>
               <td>{{ magazine.author }}</td>
               <td>{{ magazine.title }}</td>

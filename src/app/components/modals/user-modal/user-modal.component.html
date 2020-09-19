@@ -1,3 +1,5 @@
+<!-- New and Update -->
+
 <div
   id="modalUser"
   class="modal fade"
@@ -31,7 +33,7 @@
           (ngSubmit)="onSaveUser(formUser)"
         >
           <input
-            type="text"
+            type="hidden"
             id="_id"
             name="_id"
             class="form-control"
@@ -149,6 +151,279 @@
             Cancelar
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View -->
+
+<div
+  id="modalUserView"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="hidden"
+          id="_id"
+          name="_id"
+          class="form-control"
+          [(ngModel)]="this.authSvc.userSelected._id"
+          required
+          disabled
+        />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Nombres</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Nombres"
+              [(ngModel)]="this.authSvc.userSelected.name"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Apellidos</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-control"
+              placeholder="Apellidos"
+              [(ngModel)]="this.authSvc.userSelected.lastName"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Rol</label>
+            <select
+              [(ngModel)]="opcionSeleccionado"
+              name="role"
+              id="role"
+              class="form-control"
+              [(ngModel)]="this.authSvc.userSelected.role"
+              (change)="capturar()"
+              disabled
+            >
+              <option value="" disabled selected>--Seleccionar--</option>
+              <option value="estudiante">Estudiante</option>
+              <option value="catedratico">Catedratico</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Contraseña</label>
+            <input
+              type="contraseña"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Contraseña"
+              [(ngModel)]="this.authSvc.userSelected.password"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Carnet</label>
+            <input
+              mdInput
+              #carnet
+              [disabled]="opcionSeleccionado != 'estudiante'"
+              type="text"
+              id="canert"
+              name="carnet"
+              class="form-control"
+              placeholder="Carnet"
+              [(ngModel)]="this.authSvc.userSelected.carnet"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">DPI</label>
+            <input
+              [disabled]="opcionSeleccionado != 'catedratico'"
+              type="text"
+              id="dpi"
+              name="dpi"
+              class="form-control"
+              placeholder="DPI"
+              [(ngModel)]="this.authSvc.userSelected.dpi"
+              required
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete -->
+<div
+  id="modalUserDelete"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          ¿Está seguro de eliminar este Usuario?
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="hidden"
+          id="_id"
+          name="_id"
+          class="form-control"
+          [(ngModel)]="this.authSvc.userSelected._id"
+          required
+          disabled
+        />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Nombres</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Nombres"
+              [(ngModel)]="this.authSvc.userSelected.name"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Apellidos</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-control"
+              placeholder="Apellidos"
+              [(ngModel)]="this.authSvc.userSelected.lastName"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Rol</label>
+            <select
+              [(ngModel)]="opcionSeleccionado"
+              name="role"
+              id="role"
+              class="form-control"
+              [(ngModel)]="this.authSvc.userSelected.role"
+              (change)="capturar()"
+              disabled
+            >
+              <option value="" disabled selected>--Seleccionar--</option>
+              <option value="estudiante">Estudiante</option>
+              <option value="catedratico">Catedratico</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Contraseña</label>
+            <input
+              type="contraseña"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Contraseña"
+              [(ngModel)]="this.authSvc.userSelected.password"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Carnet</label>
+            <input
+              mdInput
+              #carnet
+              [disabled]="opcionSeleccionado != 'estudiante'"
+              type="text"
+              id="canert"
+              name="carnet"
+              class="form-control"
+              placeholder="Carnet"
+              [(ngModel)]="this.authSvc.userSelected.carnet"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">DPI</label>
+            <input
+              [disabled]="opcionSeleccionado != 'catedratico'"
+              type="text"
+              id="dpi"
+              name="dpi"
+              class="form-control"
+              placeholder="DPI"
+              [(ngModel)]="this.authSvc.userSelected.dpi"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <button
+          (click)="onDeleteUser(this.authSvc.userSelected._id)"
+          type="submit"
+          class="btn btn-primary float-right"
+        >
+          Eliminar
+        </button>
+
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          class="btn float-left"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          Cancelar
+        </button>
       </div>
     </div>
   </div>

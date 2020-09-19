@@ -58,7 +58,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users; index as i">
+      <tr *ngFor="let user of users | filterUser: filterPost; index as i">
         <th class="no" scope="row">{{ i + 1 }}</th>
         <td>{{ user.carnet }} {{ user.dpi }}</td>
         <td>{{ user.name }}</td>
@@ -73,7 +73,7 @@
             class="mr-1"
             (click)="onPreUpdateUser(user)"
             data-toggle="modal"
-            data-target="#modalBookView"
+            data-target="#modalUserView"
           >
             <mat-icon>visibility </mat-icon>
           </a>
@@ -91,7 +91,9 @@
             hrf="admin/list-books"
             mat-mini-fab
             color="warn"
-            (click)="onDeleteUser(user._id)"
+            (click)="onPreUpdateUser(user)"
+            data-toggle="modal"
+            data-target="#modalUserDelete"
           >
             <mat-icon>delete</mat-icon>
           </a>

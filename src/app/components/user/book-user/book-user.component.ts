@@ -9,6 +9,7 @@ import { BookService } from 'src/app/services/book-service.service';
 })
 export class BookUserComponent implements OnInit {
   constructor(private bookSvc: BookService) {}
+  filterPost = '';
   public books: BookInterface;
   public booksLend: BookInterface;
   ngOnInit(): void {
@@ -23,7 +24,9 @@ export class BookUserComponent implements OnInit {
 
   getListBooksLend(): any {
     this.bookSvc.getAllBooksLend().subscribe((book: BookInterface) => {
-      this.booksLend = book;
+      const dataT = book['list'].map((res) => res.book);
+      console.log(book);
+      this.booksLend = dataT;
     });
   }
 

@@ -31,6 +31,7 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { AuthService } from './services/auth-service.service';
 import { BookService } from './services/book-service.service';
 import { MagazineService } from './services/magazine-service.service';
+import { FilterUserPipe } from './pipes/filter-user.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MagazineService } from './services/magazine-service.service';
     BooksReportComponent,
     MagazineReportComponent,
     AboutComponent,
+    FilterUserPipe,
   ],
   imports: [
     BrowserModule,

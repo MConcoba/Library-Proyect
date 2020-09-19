@@ -13,6 +13,7 @@ import { BookService } from 'src/app/services/book-service.service';
 export class BookAdminComponent implements OnInit, OnDestroy {
   constructor(private bookSvc: BookService, private authSvc: AuthService) {}
   filterPost = '';
+  title = null;
   isLogged = false;
   isAdmin = null;
   elements: any = [];
@@ -40,7 +41,7 @@ export class BookAdminComponent implements OnInit, OnDestroy {
 
   getListBooks(): any {
     this.bookSvc.getAllBooks().subscribe((book: BookInterface) => {
-      (this.books = book), (this.elements = book);
+      (this.books = book), (this.elements = book), (this.title = book.title);
     });
   }
 

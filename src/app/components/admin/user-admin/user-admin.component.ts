@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 })
 export class UserAdminComponent implements OnInit, OnDestroy {
   constructor(private authSvc: AuthService) {}
+
   filterPost = '';
   isLogged = false;
   isAdmin = null;

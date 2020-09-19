@@ -9,20 +9,9 @@
             class="form-control"
             id="search"
             mdbInput
+            [(ngModel)]="filterPost"
           />
-          <label for="search">Buscar</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group col-md-4">
-      <div class="col-md-10 mx-auto">
-        <div class="md-form">
-          <select class="browser-default custom-select">
-            <option selected>Ordenar por</option>
-            <option value="1">No</option>
-            <option value="2">Copias</option>
-            <option value="3">Disponibles</option>
-          </select>
+          <label for="search">Buscar (Titulo o Autor)</label>
         </div>
       </div>
     </div>
@@ -34,7 +23,7 @@
             <div class="row">
               <div
                 class="col-xs-12 col-sm-6 col-md-4 mb-4"
-                *ngFor="let book of books"
+                *ngFor="let book of books | filter: filterPost; index as i"
               >
                 <div class="card_book">
                   <div class="card">
@@ -74,19 +63,19 @@
           <div class="container">
             <div class="row">
               <div
-                class="col-xs-12 col-sm-6 col-md-8 mb-4"
-                *ngFor="let book of booksLend"
+                class="col-xs-12 col-sm-6 col-md-4 mb-4"
+                *ngFor="let book of booksLend | filter: filterPost; index as i"
               >
                 <div class="card_book">
                   <div class="card">
                     <div class="card-body text-center">
-                      <h3>{{ book.book.title }}</h3>
+                      <h3>{{ book.title }}</h3>
 
                       <h5 class="card-title font-italic font-weight-light">
-                        <u>({{ book.book.author }})</u>
+                        <u>({{ book.author }})</u>
                       </h5>
                       <p class="card-text">
-                        {{ book.book.description | truncateText: 15 }}
+                        {{ book.description | truncateText: 15 }}
                       </p>
                       <div class="container-precio-idioma">
                         <p class="badge badge-info"></p>
@@ -96,7 +85,7 @@
                       <a
                         class="btn btn-block btn-danger"
                         target="_blank"
-                        (click)="onReturnBook(book.book._id)"
+                        (click)="onReturnBook(book._id)"
                         >Devolver</a
                       >
                     </div>
@@ -123,7 +112,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let book of books; index as i">
+            <tr *ngFor="let book of books | filter: filterPost; index as i">
               <th class="no" scope="row">{{ i + 1 }}</th>
               <td>{{ book.author }}</td>
               <td>{{ book.title }}</td>
@@ -140,7 +129,5 @@
     </mat-tab-group>
   </div>
 </div>
-
-<app-book-modal></app-book-modal>
 
 <ng-template #nada>No hay nada que mostrar</ng-template>

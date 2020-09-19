@@ -9,6 +9,7 @@ import { MagazineService } from 'src/app/services/magazine-service.service';
 })
 export class MagazineUserComponent implements OnInit {
   constructor(private magazineSvc: MagazineService) {}
+  filterPost = '';
   public magazines: MagazineInterface;
   public magazinesLend: MagazineInterface;
   ngOnInit(): void {
@@ -27,7 +28,9 @@ export class MagazineUserComponent implements OnInit {
     this.magazineSvc
       .getAllMagazineLend()
       .subscribe((magazine: MagazineInterface) => {
-        this.magazinesLend = magazine;
+        const dataT = magazine['list'].map((res) => res.magazine);
+        console.log(magazine);
+        this.magazinesLend = dataT;
       });
   }
 
