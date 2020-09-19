@@ -182,7 +182,7 @@
       <div class="modal-body">
         <input
           type="hidden"
-          id="_id"
+          id="_idV"
           name="_id"
           class="form-control"
           [(ngModel)]="this.authSvc.userSelected._id"
@@ -194,7 +194,7 @@
             <label for="">Nombres</label>
             <input
               type="text"
-              id="name"
+              id="nameV"
               name="name"
               class="form-control"
               placeholder="Nombres"
@@ -206,7 +206,7 @@
             <label for="">Apellidos</label>
             <input
               type="text"
-              id="lastName"
+              id="lastNameV"
               name="lastName"
               class="form-control"
               placeholder="Apellidos"
@@ -237,7 +237,7 @@
             <label for="">Contraseña</label>
             <input
               type="contraseña"
-              id="password"
+              id="passwordV"
               name="password"
               class="form-control"
               placeholder="Contraseña"
@@ -255,7 +255,7 @@
               #carnet
               [disabled]="opcionSeleccionado != 'estudiante'"
               type="text"
-              id="canert"
+              id="canertV"
               name="carnet"
               class="form-control"
               placeholder="Carnet"
@@ -268,7 +268,7 @@
             <input
               [disabled]="opcionSeleccionado != 'catedratico'"
               type="text"
-              id="dpi"
+              id="dpiV"
               name="dpi"
               class="form-control"
               placeholder="DPI"
@@ -310,7 +310,7 @@
       <div class="modal-body">
         <input
           type="hidden"
-          id="_id"
+          id="_idD"
           name="_id"
           class="form-control"
           [(ngModel)]="this.authSvc.userSelected._id"
@@ -322,7 +322,7 @@
             <label for="">Nombres</label>
             <input
               type="text"
-              id="name"
+              id="nameD"
               name="name"
               class="form-control"
               placeholder="Nombres"
@@ -334,7 +334,7 @@
             <label for="">Apellidos</label>
             <input
               type="text"
-              id="lastName"
+              id="lastNameD"
               name="lastName"
               class="form-control"
               placeholder="Apellidos"
@@ -350,7 +350,7 @@
             <select
               [(ngModel)]="opcionSeleccionado"
               name="role"
-              id="role"
+              id="roleD"
               class="form-control"
               [(ngModel)]="this.authSvc.userSelected.role"
               (change)="capturar()"
@@ -365,7 +365,7 @@
             <label for="">Contraseña</label>
             <input
               type="contraseña"
-              id="password"
+              id="passwordD"
               name="password"
               class="form-control"
               placeholder="Contraseña"
@@ -383,7 +383,7 @@
               #carnet
               [disabled]="opcionSeleccionado != 'estudiante'"
               type="text"
-              id="canert"
+              id="canertD"
               name="carnet"
               class="form-control"
               placeholder="Carnet"
@@ -396,7 +396,7 @@
             <input
               [disabled]="opcionSeleccionado != 'catedratico'"
               type="text"
-              id="dpi"
+              id="dpiD"
               name="dpi"
               class="form-control"
               placeholder="DPI"
