@@ -78,7 +78,7 @@ const getMagazineLendUser = async (req, res) => {
   if (!userMagazine) {
     return res.status(404).send({ menssage: 'ERROR: Magazine not exists' });
   } else {
-    return res.status(202).send(userMagazine.magazines_borrowed);
+    return res.status(202).send({ list: userMagazine.magazines_borrowed });
   }
 };
 

@@ -86,7 +86,7 @@ const getBooksAviablesUser = async (req, res) => {
 
 const getBooksLendUser = async (req, res) => {
   var isAdmin = req.user.sub;
-  const booksList = await Book.find({}, { _id: 1 });
+  const booksList = await Book.find({}, {});
   const userBook = await User.findOne({ _id: isAdmin }).populate({
     path: 'books_borrowed.book',
   });
@@ -94,7 +94,10 @@ const getBooksLendUser = async (req, res) => {
   if (!userBook) {
     return res.status(404).send({ menssage: 'ERROR: Book not exists' });
   } else {
-    return res.status(202).send(userBook.books_borrowed);
+    for (let x = 0; x < userBook.books_borrowed.length; x++) {
+      const element = userBook.books_borrowed;
+    }
+    return res.status(202).send({list: userBook.books_borrowed});
   }
 };
 
