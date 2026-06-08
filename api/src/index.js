@@ -6,7 +6,7 @@ const generateDate = require('./util/generateData');
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect('mongodb://localhost:27017/DB_Library-2018551', {
+  .connect('mongodb://localhost:27017/library', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

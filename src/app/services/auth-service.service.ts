@@ -139,7 +139,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers = headers.append('Access-Control-Allow-Headers', 'testheader');
     headers = headers.append('Authorization', this.getTokenAuth());
-    return this.http.get(`/api/get-users`, { headers });
+    return this.http.get(`http://localhost:3000/api//get-users`, { headers });
   }
 
   userProfile() {
